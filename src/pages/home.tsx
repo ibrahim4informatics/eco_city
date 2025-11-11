@@ -1,15 +1,20 @@
 import HeroSection from "@/components/home/HeroSection";
+import WasteManagementIntroduction from "@/components/home/WasteManagementIntroduction";
 import Heading from "@/components/motion/Heading";
-import Text from "@/components/motion/Text";
-import { Box } from "@chakra-ui/react";
-import MotionBox from "@/components/motion/Box";
-import MotionImage from "@/components/motion/Image";
-import wasteBins from "@/assets/images/bins-waste.jpg"
-import wasteManagementEffectPicture from "@/assets/images/withorwithout-wastemanagement.png"
-import cartoonCharacter1 from "@/assets/images/character1.jpg";
+import Image from "@/components/motion/Image";
+import MotionBox from "@/components/motion/Box"
+import { useAppSelector } from "@/hooks/useAppSelector";
+import { Box, List } from "@chakra-ui/react";
+
+import pic from "@/assets/images/metal-process.png";
 
 
 const Home = () => {
+
+    const isLoading = useAppSelector(state => state.app.isLoading);
+
+
+
 
     return (
         <>
@@ -19,53 +24,39 @@ const Home = () => {
 
             {/* Waste management introduction */}
 
-            <Box display={"flex"} px={2} py={4} justifyContent={"center"} id="intro" w={"100%"} height={"100dvh"}>
+            {!isLoading && (
+                <>
+                    <WasteManagementIntroduction />
 
-                <Box w={"100%"} gap={4} maxW={1204} display={"flex"} flexDir={{ base: "column", lg: "row" }}>
-                    {/* Here is the text content */}
-                    <Box flex={1}>
-                        <Heading initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: .8, delay: 0.1 }} borderBottom={"solid 1px"} pb={2} borderBottomColor={"accent.600"} color={"accent.600"} size={"4xl"} textAlign={"center"}>Let's Explore What is <br />Waste Management</Heading>
-                        <Text initial={{ opacity: 0, y: 100 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: .8, delay: 0.15 }} my={4} fontSize={20}>
-                            Waste management means taking care of the trash we make — in a smart way that keeps our planet clean and happy! 🌎✨
-                        </Text>
+                    { /* Metal Waste Process */}
 
+                    <Box w={"100%"} px={2} minH={"100dvh"} py={4} display={"flex"} justifyContent={"center"}>
 
-                        <Text pos={"relative"} _before={{ content: "''", w: 1, h: "100%", bg: "accent.300", pos: "absolute", left: 0, top: 0, rounded: "md", }} pl={4} initial={{ opacity: 0, y: 100 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: .8, delay: 0.2 }} my={4} fontSize={20}>
-                            Every day, we throw away things like bottles, papers, food, and toys.
-                            But where do they go after we drop them in the bin?
+                        <Box w={"100%"} maxW={1024} display={"flex"} gap={2}>
+                            <Box flex={1}>
+                                <Heading whileInView={{opacity:1, y:0}} transition={{duration:0.3, delay:.4}} initial={{opacity:0, y:-100}} size={"4xl"}>🪙 What Happens to Metal Waste?</Heading>
+                                <Heading whileInView={{opacity:1, x:0}} transition={{duration:0.3, delay:.4}} initial={{opacity:0, x:-100}} pos={"relative"} _before={{ content: "''", pos: "absolute", h: "100%", w: 1, bg: "accent.400", top: 0, left: 0 }} px={2} size={"xl"} my={2} color={"GrayText"}>Turning old cans into new shiny things!</Heading>
 
-                            Waste management is all about collecting, sorting, recycling, and disposing of waste safely — so it doesn’t hurt animals, people, or nature. 🌿
+                                <MotionBox whileInView={{opacity:1,scale:1,y:0}} initial={{opacity:0, y:100, scale:.7}} transition={{duration:0.3, delay:.4}}>
+                                    <List.Root my={6} as={"ol"} pos={"relative"} _before={{ content: "''", pos: 'absolute', top: 0, left: 0, w: 1, h: "100%", bg: "primary.400" }} px={7}>
+                                        <List.Item my={2}>🗑️ Metal cans and tins are thrown into the Metal recycling bin(The Gray One).</List.Item>
+                                        <List.Item my={2}>🚛 They go to a recycling factory where magnets separate metals from other trash.</List.Item>
+                                        <List.Item my={2}>🔥 The metals are melted in a super-hot furnace.</List.Item>
+                                        <List.Item my={2}>🧊 The melted metal is shaped into new cans, bikes, or even cars!</List.Item>
+                                        <List.Item my={2}>✨ Now they’re ready to be used again — saving energy and our planet.</List.Item>
+                                    </List.Root>
+                                </MotionBox>
+                            </Box>
 
-                            When we sort our trash the right way:
-                            ♻️ Plastic gets recycled into new toys or bottles.
-                            📄 Paper turns into new notebooks.
-                            🍎 Food waste becomes compost that helps plants grow.
-
-                            It’s like giving old things a second life!
-
-                            Good waste management keeps our streets clean, saves natural resources, and helps us build a brighter, greener future together. 🌱💪
-                        </Text>
-
-
-
-
-                        <MotionImage initial={{ scale: 0.5, opacity: 0 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.3 }} src={wasteBins} h={200} my={4} rounded={"md"} shadow={"md"} w={"full"} />
-                    </Box>
-
-                    <Box flex={1}>
-                        <MotionImage initial={{ scale: 0.5, opacity: 0 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.1 }} src={wasteManagementEffectPicture} rounded={"md"} shadow={"md"} w={"full"} />
-                        <MotionBox my={2} style={{ transition: "background 300ms linear,scale 300ms linear, color 300ms linear" }} cursor={"pointer"} _hover={{ scale: 1.01, bg: "bg.400", color: "text.700" }} initial={{ opacity: 0, x: -100, scale: 0.9 }} whileInView={{ scale: 1, opacity: 1, x: 0 }} p={4} rounded={6} bg={"bg.200"} transition={{ duration: .8, delay: 0.25 }} >
-                            <Heading cursor={"pointer"}>Every time you throw something in the right bin,
-                                you’re helping the Earth stay clean and smiling! 😄🌍</Heading>
-                        </MotionBox>
-                        <MotionImage initial={{ scale: 0.5, opacity: 0 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.1 }} src={cartoonCharacter1} rounded={"md"} w={400} mx={"auto"} />
-
+                            <Box flex={1}>
+                                <Image whileInView={{opacity:1, y:0, scale:1}} transition={{duration:0.3, delay:.4}} initial={{opacity:0, y:-100, scale:0}} src={pic} w={"100%"} />
+                            </Box>
+                        </Box>
 
                     </Box>
-                </Box>
 
-            </Box>
-
+                </>
+            )}
 
 
         </>

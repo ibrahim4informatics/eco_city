@@ -8,7 +8,7 @@ const PlasticWasteProcess = () => {
     return (
         <Box w={"100%"} px={2} minH={"100dvh"} py={4} display={"flex"} justifyContent={"center"} alignItems={"center"}>
 
-            <Box w={"100%"} maxW={1024} display={"flex"} gap={2}>
+            <Box w={"100%"} maxW={1024} display={"flex"} gap={2} flexDir={{base:"column", lg:"row"}}>
                 <Box flex={1}>
                     <Heading whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: .4 }} initial={{ opacity: 0, y: -100 }} size={"4xl"}>🧴 What Happens to Plastic Waste?</Heading>
                     <Heading whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.3, delay: .4 }} initial={{ opacity: 0, x: -100 }} pos={"relative"} _before={{ content: "''", pos: "absolute", h: "100%", w: 1, bg: "accent.400", top: 0, left: 0 }} px={2} size={"xl"} my={2} color={"GrayText"}>From old bottles to new toys!</Heading>

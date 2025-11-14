@@ -16,7 +16,7 @@ const Naviagation = ()=>{
 
              <Tooltip content="Play Game!">
                 <Button size={"lg"} asChild rounded={"full"} bgColor={"accent.400"} _hover={{bgColor:"accent.600"}} transition={"background-color 300ms linear"} p={4}>
-                <Link href="/"><GiRetroController/></Link>
+                <Link href="/game"><GiRetroController/></Link>
             </Button>
             </Tooltip>
 
@@ -24,7 +24,7 @@ const Naviagation = ()=>{
             
              <Tooltip content="Take a Quizz!">
                 <Button size={"lg"} asChild rounded={"full"} bgColor={"accent.400"} _hover={{bgColor:"accent.600"}} transition={"background-color 300ms linear"} p={4}>
-                <Link href="/"><FaBrain/></Link>
+                <Link href="/quizz"><FaBrain/></Link>
             </Button>
             </Tooltip>
         </Box>

@@ -4,8 +4,27 @@ import Game from "./pages/game";
 import Quizz from "./pages/quiz";
 import Error from "./pages/Error";
 import { ChakraProvider, createSystem, defaultConfig, defineConfig } from "@chakra-ui/react";
+import { DndProvider } from 'react-dnd';
+import {TouchBackend} from "react-dnd-touch-backend"
+import {HTML5Backend} from "react-dnd-html5-backend";
+import { MultiBackend, TouchTransition } from "react-dnd-multi-backend";
 
 function App() {
+
+  const HTML5toTouch = {
+  backends: [
+    {
+      id: "html5",
+      backend: HTML5Backend,
+    },
+    {
+      id: "touch",
+      backend: TouchBackend,
+      options: { enableMouseEvents: true },
+      transition: TouchTransition,
+    },
+  ],
+};
 
 
   const routes = createBrowserRouter([
@@ -101,9 +120,11 @@ function App() {
 
   return (
 
-    <ChakraProvider value={theme}>
-      <RouterProvider router={routes} />
-    </ChakraProvider>
+    <DndProvider backend={MultiBackend} options={HTML5toTouch}>
+      <ChakraProvider value={theme}>
+        <RouterProvider router={routes} />
+      </ChakraProvider>
+    </DndProvider>
   )
 }
 

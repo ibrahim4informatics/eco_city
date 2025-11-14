@@ -6,10 +6,11 @@ import MotionBox from "@/components/motion/Box";
 import wasteBins from "@/assets/images/bins-waste.jpg"
 import wasteManagementEffectPicture from "@/assets/images/withorwithout-wastemanagement.png"
 import cartoonCharacter1 from "@/assets/images/character1.jpg";
-
+import Naviagation from "../shared/Navigation";
 const WasteManagementIntroduction = () => {
     return (
         <Box display={"flex"} px={2} py={4} justifyContent={"center"} id="intro" w={"100%"} minHeight={"100dvh"}>
+            <Naviagation/>
 
             <Box w={"100%"} gap={4} maxW={1204} display={"flex"} flexDir={{ base: "column", lg: "row" }}>
                 {/* Here is the text content */}

@@ -3,7 +3,7 @@ import { GiRetroController } from "react-icons/gi";
 import { FaBrain } from "react-icons/fa";
 import { FaBookOpen } from "react-icons/fa6";
 import Overlay from "@/components/ui/Overlay";
-import { Box, Span, Spinner } from '@chakra-ui/react';
+import { Box, Link, Span, Spinner } from '@chakra-ui/react';
 import AnimatedText from "@/components/motion/Text";
 import AnimatedHeading from "@/components/motion/Heading";
 import AnimatedButton from "@/components/motion/Button";
@@ -36,8 +36,8 @@ const HeroSection = () => {
 
                     <Box w={"full"} my={6} display={"flex"} flexWrap={"wrap"} alignItems={"center"} justifyContent={{ base: "center", md: "flex-start" }} gap={4}>
                         <AnimatedButton asChild initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 1 }} w={{ base: "full", md: "auto" }} size={"2xl"} rounded={"full"} bg={"primary.300"} color={"text.600"} style={{ transition: "background 200ms linear" }} _hover={{ bg: "primary.500" }}><a href="#intro"><FaBookOpen />Read About Waste Management</a></AnimatedButton>
-                        <AnimatedButton initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 1.5 }} size={"2xl"} rounded={"full"} bg={"bg.300"} color={"text.600"} style={{ transition: "background 200ms linear" }} _hover={{ bg: "bg.500" }}><FaBrain />Take Quizz</AnimatedButton>
-                        <AnimatedButton initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 2 }} size={"2xl"} rounded={"full"} bg={"accent.300"} color={"text.600"} style={{ transition: "background 200ms linear" }} _hover={{ bg: "accent.500" }}><GiRetroController /> Play Game</AnimatedButton>
+                        <AnimatedButton initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 1.5 }} size={"2xl"} rounded={"full"} bg={"bg.300"} color={"text.600"} style={{ transition: "background 200ms linear" }} _hover={{ bg: "bg.500" }}><Link href="quizz"><FaBrain />Take Quizz</Link></AnimatedButton>
+                        <AnimatedButton initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 2 }} size={"2xl"} rounded={"full"} bg={"accent.300"} color={"text.600"} style={{ transition: "background 200ms linear" }} _hover={{ bg: "accent.500" }}><Link href="/game"><GiRetroController /> Play Game</Link></AnimatedButton>
                     </Box>
 
                 </Box>

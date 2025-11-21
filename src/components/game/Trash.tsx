@@ -1,7 +1,8 @@
 import { Tooltip } from '@/components/ui/tooltip';
 import { Box, Image } from '@chakra-ui/react';
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDrag } from 'react-dnd';
+import { getEmptyImage } from 'react-dnd-html5-backend';
 
 interface Props {
     id:number,
@@ -12,16 +13,23 @@ interface Props {
 
 const Trash: React.FC<Props> = ({ name, src, type,id }) => {
 
-    const [{ isDragging }, drag] = useDrag({
+    const [{ isDragging }, drag, preview] = useDrag({
         type: "trash",
         item: {
             id,
             name,
-            type
+            type,
+            src
         },
         collect: (monitor) => ({ isDragging: !!monitor.isDragging() }),
 
     });
+
+    useEffect(()=>{
+        preview(getEmptyImage())
+    }, [preview])
+
+
     return (
 
         <Tooltip content={name}>

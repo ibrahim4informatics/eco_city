@@ -28,7 +28,6 @@ import boxTrash from "@/assets/images/game/trash/box.png";
 import newsPaper from "@/assets/images/game/trash/news_paper.png";
 import foodWrapper from "@/assets/images/game/trash/food_wrapper.png";
 import glassBottle1 from "@/assets/images/game/trash/glass_bottle1.png";
-import glassBottle2 from "@/assets/images/game/trash/glass_bottle_2.png";
 import plasticBottle from "@/assets/images/game/trash/plastic bottle.png";
 import plastciBag from "@/assets/images/game/trash/plastic_bag.png";
 import plasticPipe from "@/assets/images/game/trash/plastic_pipe.png";
@@ -41,7 +40,6 @@ const gameTrashes = [
     { id: 4, name: "Empty Box", src: boxTrash, type: "paper" },
     { id: 5, name: "News Paper", src: newsPaper, type: "paper" },
     { id: 6, name: "Food Wrapper", src: foodWrapper, type: "paper" },
-    { id: 7, name: "Glass Bottle", src: glassBottle2, type: "glass" },
     { id: 8, name: "Glass Water Container", src: glassBottle1, type: "glass" },
     { id: 9, name: "Plastic Water Bottle", src: plasticBottle, type: "plastic" },
     { id: 10, name: "Plastic Bag", src: plastciBag, type: "plastic" },
@@ -60,7 +58,7 @@ const getRandomTrash = (value: number) => {
     const usedIndexes = new Set<number>();
 
     while (randomTrashes.length < value) {
-        const index = Math.floor(Math.random() * 12);
+        const index = Math.floor(Math.random() * 11);
 
         if (usedIndexes.has(index)) continue;
 

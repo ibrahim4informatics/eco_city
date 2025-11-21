@@ -13,6 +13,7 @@ import { AnimatePresence } from "motion/react";
 import { FaArrowsRotate } from "react-icons/fa6";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { reset } from "@/store/slices/gameSlice";
+import DragableItem from "@/components/game/DraggableItem";
 
 
 
@@ -25,6 +26,8 @@ const Game = () => {
     const dispatch = useAppDispatch();
     return (
         <>
+
+            <DragableItem />
             <Box display={"flex"} alignItems={"center"} p={4} gap={2}>
                 <Heading color={"accent.600"} size={{ base: "2xl", lg: "5xl" }} my={4} flex={1} textAlign={"center"}>Play Filter Game</Heading>
                 <Button colorPalette={"red"} size={"lg"} rounded={"full"} asChild>
@@ -42,7 +45,7 @@ const Game = () => {
 
                 </Box>
                 <Box w={"full"} h={"full"} display={"flex"} flexDirection={{ base: "column", lg: "row" }} py={12}>
-                    <Box flex={1} display={"flex"} flexDir={{ base: "row", lg: "column" }} gap={8} alignItems={{ base: "center", lg: "flex-start" }}>
+                    <Box flex={1} display={"flex"} flexDir={{ base: "row", lg: "column" }} gap={8} alignItems={{ base: "center", lg: "flex-start" }} justifyContent={"space-between"}>
 
                         {
                             shownTrash.map((trash, index) => <Trash key={`${trash.id}-${trash.name}-${index}`} id={trash.id} src={trash.src} name={trash.name} type={trash.type} />)
@@ -71,7 +74,7 @@ const Game = () => {
                                 <Text fontSize={72} fontWeight={"bold"} color={"primary.600"}>{score}</Text>
                                 <Text fontSize={20}>We Expect More Next Time!</Text>
                                 <Box w={"full"} display={"flex"} alignItems={"center"} justifyContent={"center"} gap={4} flexWrap={"wrap"}>
-                                    <Button onClick={()=>{ dispatch(reset()) }} bg={"accent.400"} _hover={{ bg: "accent.600" }} style={{ transition: "background 300ms linear" }} rounded={"full"} size={"2xl"}><FaArrowsRotate /> Try Again</Button>
+                                    <Button onClick={() => { dispatch(reset()) }} bg={"accent.400"} _hover={{ bg: "accent.600" }} style={{ transition: "background 300ms linear" }} rounded={"full"} size={"2xl"}><FaArrowsRotate /> Try Again</Button>
                                     <Button colorPalette={"red"} asChild rounded={"full"} size={"2xl"}>
                                         <Link href="/"><FaArrowsRotate /> Exit</Link>
                                     </Button>

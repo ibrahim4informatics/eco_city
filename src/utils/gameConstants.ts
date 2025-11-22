@@ -47,9 +47,10 @@ const gameTrashes = [
     { id: 12, name: "Broken Cup", src: cup, type: "glass" },
 ]
 
+
 const getRandomTrash = (value: number) => {
     const randomTrashes: {
-        id:number,
+        id: number,
         name: string;
         src: string;
         type: string;
@@ -68,6 +69,13 @@ const getRandomTrash = (value: number) => {
 
     return randomTrashes;
 }
+
+const playSfx = (src: string) => {
+    const sfx = new Audio(src);
+    sfx.volume = 1;
+    sfx.currentTime = 0;
+    sfx.play();
+}
 export {
-    gameBins, gameTrashes, getRandomTrash
+    gameBins, gameTrashes, getRandomTrash, playSfx
 }

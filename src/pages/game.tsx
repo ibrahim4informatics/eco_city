@@ -5,7 +5,7 @@ import { Badge, Link } from "@chakra-ui/react";
 import { gameBins } from "@/utils/gameConstants";
 import Trash from "@/components/game/Trash";
 import Bin from "@/components/game/Bin";
-import { FaHeart } from "react-icons/fa";
+import { FaHeart, FaPlay } from "react-icons/fa";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import Text from "@/components/motion/Text";
 import Heading from "@/components/motion/Heading";
@@ -14,18 +14,57 @@ import { FaArrowsRotate } from "react-icons/fa6";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { reset } from "@/store/slices/gameSlice";
 import DragableItem from "@/components/game/DraggableItem";
+import bgAudio from "@/assets/audio/audio_bg2.mp3"
+import { useEffect, useRef, useState } from "react";
 
 
 
 const Game = () => {
 
+    const [gameState, setGameState] = useState<"idle"|"playing">("idle")
     const shownTrash = useAppSelector(state => state.game.shownTrash)
+    const bgAudioRef = useRef<HTMLAudioElement | null>(null);
 
     const lives = useAppSelector(state => state.game.lives);
     const score = useAppSelector(state => state.game.score);
     const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        const audio = bgAudioRef.current;
+        
+        if (!audio) return;
+        audio.volume=0.75
+        audio.play()
+        const unlockAudio = () => {
+            audio.play();
+            window.removeEventListener("click", unlockAudio);
+            window.removeEventListener("touchstart", unlockAudio);
+        }
+
+        window.addEventListener("click", unlockAudio);
+        window.addEventListener("touchstart", unlockAudio);
+
+        return () => {
+
+            window.removeEventListener("click", unlockAudio);
+            window.removeEventListener("touchstart", unlockAudio);
+
+        }
+
+    }, [])
     return (
         <>
+
+            <audio ref={bgAudioRef} playsInline loop src={bgAudio} />
+
+            <AnimatePresence>
+                {
+                    gameState === "idle" && <Box initial={{opacity:1, scale:1}} exit={{opacity:0, scale:0}} bg={"rgba(0,0,0,.6)"} w={"full"} h={"100dvh"} pos={"fixed"} top={0} left={0} display={"flex"} alignItems={"center"} justifyContent={"center"}>
+
+                        <Button onClick={()=>{setGameState("playing")}} rounded={"full"}  size={"2xl"} bg={"accent.400"} _hover={{bg:"accent.600"}}><FaPlay/>Play</Button>
+                    </Box>
+                }
+            </AnimatePresence>
 
             <DragableItem />
             <Box display={"flex"} alignItems={"center"} p={4} gap={2}>
@@ -69,7 +108,7 @@ const Game = () => {
                     lives === 0 && (
                         <Box initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0, opacity: 0 }} pos={"fixed"} bg={"rgba(0,0,0,.6)"} w={"100%"} h={"100dvh"} top={0} left={0} display={"flex"} alignItems={"center"} justifyContent={"center"}>
                             <Box w={"full"} maxW={720} bg={"bg.200"} opacity={0.75} shadow={"md"} rounded={"md"} h={{ base: "100dvh", lg: "auto" }} p={6} display={"flex"} alignItems={"center"} justifyContent={"center"} gap={6} flexDirection={"column"}>
-                                <Heading size={{ base: "2xl", lg: "4xl" }} textAlign={"center"} color={"accent.600"}>You Loose</Heading>
+                                <Heading size={{ base: "2xl", lg: "4xl" }} textAlign={"center"} color={"accent.600"}>Game Over</Heading>
                                 <Text fontSize={64} fontWeight={"bold"} color={"primary.600"}>Score</Text>
                                 <Text fontSize={72} fontWeight={"bold"} color={"primary.600"}>{score}</Text>
                                 <Text fontSize={20}>We Expect More Next Time!</Text>

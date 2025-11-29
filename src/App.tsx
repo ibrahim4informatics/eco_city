@@ -39,7 +39,7 @@ function App() {
     {
       path: "/game", element: <Game />, errorElement: <Error />,
     },
-  ], {basename:"/eco_city"})
+  ])
 
 
 

@@ -1,6 +1,5 @@
 import { useAppDispatch } from '@/hooks/useAppDispatch'
-import { useAppSelector } from '@/hooks/useAppSelector'
-import { changeTrash, decrementLives, decrementScore, incrementScore } from '@/store/slices/gameSlice'
+import { changeTrash, decrementLives, decrementScore, incrementScore, setShowCorrectFeedback, setShowWrongFeedback } from '@/store/slices/gameSlice'
 import { Box, Image } from '@chakra-ui/react'
 import React from 'react'
 import { useDrop } from 'react-dnd'
@@ -18,25 +17,28 @@ const Bin: React.FC<Props> = ({ src, type }) => {
 
     const [, drop] = useDrop({
         accept: "trash",
-       drop:(item:{id:number,name:string, type:string})=>{
-        if(item.type === type){
-            playSfx(correctSfx);
-            dispatch(incrementScore(5));
-            dispatch(changeTrash(item.id))
+        drop: (item: { id: number, name: string, type: string }) => {
+            if (item.type === type) {
+                playSfx(correctSfx);
+                dispatch(setShowCorrectFeedback(true))
+                dispatch(incrementScore(5));
+                dispatch(changeTrash(item.id))
 
-        }
+            }
 
-        else {
-            playSfx(wrongSfx)
-            dispatch(decrementScore(3));
-            dispatch(decrementLives())
+            else {
+                playSfx(wrongSfx)
+                dispatch(setShowWrongFeedback(true))
+                dispatch(decrementScore(3));
+
+                dispatch(decrementLives())
+            }
         }
-       }
     }
     )
     return (
         <Box w={"fit-content"} ref={drop}>
-            <Image key={type} flex={{ base: 1, lg: "auto" }} src={src} w={{ base: "120px", lg: "full" }} />
+            <Image key={type} flex={{ base: 1, lg: "auto" }} src={src} w={{ base: "120px", lg: "120px" }} />
         </Box>
     )
 }

@@ -34,7 +34,7 @@ const Trash: React.FC<Props> = ({ name, src, type,id }) => {
 
         <Tooltip content={name}>
             <Box w={"fit-content"} ref={drag}>
-                <Image opacity={isDragging ? 0.5 : 1} src={src} w={40} />
+                <Image opacity={isDragging ? 0.5 : 1} src={src} w={"300px"} />
             </Box>
 
         </Tooltip>

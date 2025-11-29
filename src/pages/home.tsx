@@ -1,7 +1,6 @@
 import HeroSection from "@/components/home/HeroSection";
 import WasteManagementIntroduction from "@/components/home/WasteManagementIntroduction";
 import { useAppSelector } from "@/hooks/useAppSelector";
-import MetalWasteProcess from "@/components/home/MetalWasteProcess";
 import PlasticWasteProcess from "@/components/home/PlasticWasteProcess";
 import PaperWasteProcess from "@/components/home/PaperWasteProcess";
 import GlassWasteProcess from "@/components/home/GlassWasteProcess";
@@ -28,9 +27,7 @@ const Home = () => {
                 <>
                     <WasteManagementIntroduction />
 
-                    { /* Metal Waste Process */}
-
-                    <MetalWasteProcess />
+                   
 
                     <PlasticWasteProcess />
                     <PaperWasteProcess />

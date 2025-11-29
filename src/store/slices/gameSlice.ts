@@ -13,7 +13,9 @@ type TrashType = {
 interface gameSlice {
     score: number,
     lives: number,
-    shownTrash: TrashType[]
+    shownTrash: TrashType[],
+    showCorrectFeedback: boolean,
+    showWrongFeedback: boolean,
 }
 
 
@@ -23,7 +25,9 @@ interface gameSlice {
 const initialState: gameSlice = {
     score: 0,
     lives: 3,
-    shownTrash: getRandomTrash(3),
+    shownTrash: getRandomTrash(1),
+    showCorrectFeedback: false,
+    showWrongFeedback: false
 }
 
 const gameSlice = createSlice({
@@ -34,7 +38,7 @@ const gameSlice = createSlice({
         reset: (state) => {
             state.lives = 3;
             state.score = 0;
-            state.shownTrash = getRandomTrash(3)
+            state.shownTrash = getRandomTrash(1)
         },
 
         incrementScore: (state, { payload }: PayloadAction<number>) => {
@@ -53,6 +57,13 @@ const gameSlice = createSlice({
         changeTrash: (state, { payload }: PayloadAction<number>) => {
             state.shownTrash = state.shownTrash.filter(trash => trash.id !== payload)
             state.shownTrash = state.shownTrash.concat(getRandomTrash(1));
+        },
+
+        setShowCorrectFeedback: (state, { payload }: PayloadAction<boolean>) => {
+            state.showCorrectFeedback = payload
+        },
+        setShowWrongFeedback: (state, { payload }: PayloadAction<boolean>) => {
+            state.showWrongFeedback = payload
         }
 
     }
@@ -60,4 +71,4 @@ const gameSlice = createSlice({
 
 
 export default gameSlice.reducer;
-export const { reset, decrementLives, decrementScore, incrementScore, changeTrash } = gameSlice.actions;
+export const { reset, decrementLives, decrementScore, incrementScore, changeTrash, setShowCorrectFeedback, setShowWrongFeedback } = gameSlice.actions;

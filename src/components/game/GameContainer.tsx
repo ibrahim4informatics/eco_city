@@ -7,7 +7,7 @@ interface Props {
 
 const GameContainer:React.FC<Props> = ({children}) => {
   return (
-    <Box bg={"bg.200"} w={"full"} maxW={900} rounded={{base:"none", lg:"md"}} shadow={{base:"none", lg:"sm"}} h={{base:"calc(100dvh - 96px)", lg:720}} p={4}  mx={"auto"}>
+    <Box bg={"bg.200"} w={"full"}   h={"100dvh"} p={4}  mx={"auto"} overflowY={"hidden"}>
         {children}
     </Box>
   )

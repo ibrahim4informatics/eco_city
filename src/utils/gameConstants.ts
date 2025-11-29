@@ -56,14 +56,11 @@ const getRandomTrash = (value: number) => {
         type: string;
     }[] = [];
 
-    const usedIndexes = new Set<number>();
+
 
     while (randomTrashes.length < value) {
         const index = Math.floor(Math.random() * 11);
 
-        if (usedIndexes.has(index)) continue;
-
-        usedIndexes.add(index);
         randomTrashes.push(gameTrashes[index]);
     }
 

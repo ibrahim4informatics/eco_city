@@ -208,7 +208,7 @@ const Game = () => {
             <DragableItem />
 
             <GameContainer>
-                <Box display={"flex"} alignItems={"center"} p={2} gap={2}>
+                <Box display={"flex"} flexWrap={"wrap"} alignItems={"center"} p={2} gap={2}>
                     <Heading color={"accent.600"} size={"2xl"} my={4} textAlign={"center"}>Recycle Game</Heading>
 
                     <Box display={"flex"} px={6} alignItems={"center"} gap={4} mx={"auto"} >

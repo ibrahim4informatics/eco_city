@@ -1,4 +1,4 @@
-import { createBrowserRouter, createHashRouter, RouterProvider } from "react-router-dom";
+import {  createHashRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/home";
 import Game from "./pages/game";
 import Quizz from "./pages/quiz";
@@ -39,7 +39,7 @@ function App() {
     {
       path: "/game", element: <Game />, errorElement: <Error />,
     },
-  ], {basename:"eco_city"})
+  ], {basename:"/eco_city"})
 
 
 

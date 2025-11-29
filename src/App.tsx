@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, createHashRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/home";
 import Game from "./pages/game";
 import Quizz from "./pages/quiz";
@@ -27,7 +27,7 @@ function App() {
 };
 
 
-  const routes = createBrowserRouter([
+  const routes = createHashRouter([
     {
       path: "/", element: <Home />, errorElement: <Error />,
     },

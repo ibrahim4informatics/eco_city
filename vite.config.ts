@@ -4,6 +4,6 @@ import tsConfigPath from "vite-tsconfig-paths";
 
 // https://vite.dev/config/
 export default defineConfig({
+  base:"/eco_city",
   plugins: [react(), tsConfigPath()],
-  base:"/eco_city/"
 })
